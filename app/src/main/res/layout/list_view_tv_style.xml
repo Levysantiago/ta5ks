@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp"
+    android:paddingTop="20dp">
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/check"
+        android:layout_width="33dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="-3dp"
+        android:buttonTint="@color/colorWhite"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@+id/ll_task"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/ll_task"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/tv_tag"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/check"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/line_a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/taskTitle"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/line_b"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/descriptionHeight"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/taskDescription"
+            android:textColor="@color/colorGrey" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_status"
+        android:layout_width="50dp"
+        android:clickable="false"
+        android:backgroundTint="@color/colorBlack"
+        android:layout_height="15dp"
+        android:background="@drawable/ic_tag"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="0dp" >
+    </View>
+    <TextView
+        android:id="@+id/tv_tag"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:clickable="false"
+        android:text="title"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:background="@drawable/ic_tag"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="0dp"/>
+
+</android.support.constraint.ConstraintLayout>
