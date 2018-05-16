@@ -11,12 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".TodayActivity"
+
+        <activity android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".TodayActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.TODAY" />
             </intent-filter>
         </activity>
 
@@ -37,7 +44,7 @@
         <activity android:name=".TagActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.DONE" />
+                <action android:name="android.intent.action.TAG"/>
             </intent-filter>
         </activity>
     </application>

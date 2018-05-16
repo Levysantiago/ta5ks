@@ -54,7 +54,7 @@ public class BacklogActivity extends AppCompatActivity {
         tv_today.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BacklogActivity.this, TodayActivity.class);
+                Intent intent = new Intent(BacklogActivity.this, MainActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }

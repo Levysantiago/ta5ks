@@ -60,7 +60,7 @@ public class DoneActivity extends AppCompatActivity {
         tv_today.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DoneActivity.this, TodayActivity.class);
+                Intent intent = new Intent(DoneActivity.this, MainActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }

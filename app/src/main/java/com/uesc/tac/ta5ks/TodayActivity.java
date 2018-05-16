@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.uesc.tac.ta5ks.dao.TaskDAO;
@@ -24,8 +23,6 @@ public class TodayActivity extends AppCompatActivity {
     private TextView tv_backlog;
     private TextView tv_done;
     private List<Task> tasks;
-
-    private SimpleAdapter sAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
