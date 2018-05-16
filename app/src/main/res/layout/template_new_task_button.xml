@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btn_newTask"
+    android:layout_width="0dp"
+    android:layout_height="145dp"
+    android:background="@color/colorTransparent"
+    android:text="ADD NEW TASK"
+    android:textColor="@color/colorWhite"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    tools:layout_editor_absoluteY="364dp" />
