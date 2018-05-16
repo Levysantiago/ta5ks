@@ -54,6 +54,7 @@
             android:textColor="@color/colorGrey" />
     </LinearLayout>
 
+    <!-- Deletar essa view depois de atualizar a lista de done e backlog -->
     <View
         android:id="@+id/view_status"
         android:layout_width="50dp"

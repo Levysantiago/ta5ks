@@ -1,10 +1,8 @@
 package com.uesc.tac.ta5ks;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -13,12 +11,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.google.android.flexbox.FlexboxLayout;
-import com.uesc.tac.ta5ks.dao.TagDAO;
 import com.uesc.tac.ta5ks.dao.TaskDAO;
-import com.uesc.tac.ta5ks.model.Tag;
 import com.uesc.tac.ta5ks.model.Task;
-import com.uesc.tac.ta5ks.util.ChipControler;
 
 import java.util.List;
 
@@ -51,6 +45,7 @@ public class TodayActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(TodayActivity.this, DoneActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -59,6 +54,7 @@ public class TodayActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(TodayActivity.this, BacklogActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -67,6 +63,7 @@ public class TodayActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(TodayActivity.this, TagActivity.class);
                 startActivityForResult(intent, PICK_CONTACT_REQUEST);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
             }
         });
     }
@@ -113,7 +110,7 @@ public class TodayActivity extends AppCompatActivity {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            view = getLayoutInflater().inflate(R.layout.list_view_tv_style, null);
+            view = getLayoutInflater().inflate(R.layout.template_list_view, null);
 
             TextView tv_tag = view.findViewById(R.id.tv_tag);
             TextView line_a = view.findViewById(R.id.line_a);

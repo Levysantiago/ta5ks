@@ -35,9 +35,14 @@ public class DoneActivity extends AppCompatActivity {
         //Inicializing the objects
         lv_tasks = findViewById(R.id.lv_tasks);
         btn_newTask = findViewById(R.id.btn_newTask);
-        tv_today = findViewById(R.id.tv_today);
-        tv_backlog = findViewById(R.id.tv_backlog);
-        tv_done = findViewById(R.id.tv_done);
+        tv_done = findViewById(R.id.tv_today);
+        tv_today = findViewById(R.id.tv_backlog);
+        tv_backlog = findViewById(R.id.tv_done);
+
+        //Changing menu items names
+        tv_done.setText("done");
+        tv_today.setText("today");
+        tv_backlog.setText("backlog");
 
         //Filling the list view
         CustomAdapter customAdapter = new CustomAdapter();
@@ -48,6 +53,7 @@ public class DoneActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(DoneActivity.this, BacklogActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -56,6 +62,7 @@ public class DoneActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(DoneActivity.this, TodayActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -79,7 +86,7 @@ public class DoneActivity extends AppCompatActivity {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            view = getLayoutInflater().inflate(R.layout.list_view_tv_style, null);
+            view = getLayoutInflater().inflate(R.layout.template_list_view, null);
 
             View view_status= view.findViewById(R.id.view_status);
             TextView line_a = view.findViewById(R.id.line_a);

@@ -3,15 +3,11 @@ package com.uesc.tac.ta5ks;
 import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.flexbox.FlexboxLayout;
@@ -198,7 +193,7 @@ public class TagActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) TagActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
 
         // Inflate the custom layout/view
-        final View customView = inflater.inflate(R.layout.activity_new_project,null);
+        final View customView = inflater.inflate(R.layout.template_new_project,null);
 
         int width = (int) (300 * scale + 0.5f);
 
