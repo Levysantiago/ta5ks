@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/layout_settings"
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.uesc.tac.ta5ks.SettingActivity"
+    android:orientation="vertical"
+    android:theme="@style/app_theme_dark">
+
+    <include
+        layout="@layout/template_menu_back"/>
+    
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Import tasks"
+        android:padding="10dp"
+        android:textAlignment="textStart"
+        android:background="@drawable/ripple_effect" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Export tasks"
+        android:padding="10dp"
+        android:textAlignment="textStart"
+        android:background="@drawable/ripple_effect" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Clear archive"
+        android:padding="10dp"
+        android:textAlignment="textStart"
+        android:background="@drawable/ripple_effect" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sync"
+        android:padding="10dp"
+        android:textAlignment="textStart"
+        android:background="@drawable/ripple_effect" />
+    <Button
+        android:id="@+id/btn_theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change theme"
+        android:padding="10dp"
+        android:textAlignment="textStart"
+        android:background="@drawable/ripple_effect" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:padding="10dp"
+        android:textAlignment="textStart"
+        android:background="@drawable/ripple_effect" />
+
+</LinearLayout>
