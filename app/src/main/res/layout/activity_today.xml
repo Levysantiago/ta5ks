@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.uesc.tac.ta5ks.MainActivity"
     android:orientation="vertical"
-    android:background="@color/colorDarkGrey">
+    android:theme="@style/app_theme_dark">
 
     <include
         android:id="@+id/app_menu"

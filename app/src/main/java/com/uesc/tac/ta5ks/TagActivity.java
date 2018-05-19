@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.flexbox.FlexboxLayout;
@@ -43,6 +44,7 @@ public class TagActivity extends AppCompatActivity {
     private Button btn_finalizeTask;
     private ConstraintLayout lt_constraint;
     private ViewGroup layout;
+    private TextView tv_title;
 
     private int defaultColor;
 
@@ -61,6 +63,8 @@ public class TagActivity extends AppCompatActivity {
         img_NewProject = findViewById(R.id.img_newProject);
         img_back = findViewById(R.id.img_back);
         btn_finalizeTask = findViewById(R.id.btn_finalizeTask);
+        tv_title = findViewById(R.id.tv_title);
+        tv_title.setText("add new task");
         defaultColor = ContextCompat.getColor(this, R.color.colorPrimary);
 
         //Updating list of tags
@@ -87,6 +91,7 @@ public class TagActivity extends AppCompatActivity {
                     final ToggleChip chip = (ToggleChip) layout.getChildAt(selectedProject);
 
                     Tag tag = tagDAO.searchTag(chip.getText().toString());
+                    //The status is 1 because the first registration is in backlog
                     Task task = new Task(edit_title.getText().toString(),
                             edit_description.getText().toString(),1, tag);
                     taskDAO.addTask(task);

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         tv_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, TodayActivity.class);
+                Intent intent = new Intent(MainActivity.this, BacklogActivity.class);
                 startActivity(intent);
             }
         });

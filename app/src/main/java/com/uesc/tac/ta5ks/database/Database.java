@@ -41,7 +41,7 @@ public class Database extends SQLiteOpenHelper{
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_TITLE + " TEXT NOT NULL, "
                 + COLUMN_DESCRIPTION + " TEXT, "
-                + COLUMN_STATUS + " INTEGER NOT NULL, "
+                + COLUMN_STATUS + " INTEGER NOT NULL, " //BACKLOG = 1, TODAY = 2, DONE = 3
                 + COLUMN_TAG + " INTEGER NOT NULL,"
                 + " FOREIGN KEY ("+COLUMN_TAG+") REFERENCES "+TABLE_TAG+"("+COLUMN_ID+"));";
         db.execSQL(QUERY_TAG);

@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorGrey">#616161</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorSelectButton">#949393</color>
     <color name="colorTransparent">#00030303</color>
     <color name="colorDarkGrey">#202020</color>
     <color name="colorWhite">#FFFFFF</color>

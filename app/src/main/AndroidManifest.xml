@@ -20,14 +20,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TodayActivity"
+        <activity android:name=".BacklogActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.TODAY" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".BacklogActivity"
+        <activity android:name=".TodayActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.BACKLOG" />
@@ -45,6 +45,13 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.TAG"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".SettingActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.SETTING"/>
             </intent-filter>
         </activity>
     </application>

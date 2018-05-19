@@ -45,9 +45,48 @@ public class TaskDAO extends Database{
         }
     }
 
-    public List<Task> listTasks(){
+    public void updateTask(Task task){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(getColumnTitle(), task.getTitle());
+        values.put(getColumnDescription(), task.getDescription());
+        values.put(getColumnStatus(), task.getStatus());
+        values.put(getColumnTag(), task.getTag().getId());
+
+        db.update(getTableTask(), values, getColumnId() + " = ?",
+                new String[] {String.valueOf(task.getId()) });
+    }
+
+    public Task searchTask(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String where = getColumnId() + " = '" + id + "'";
+        Task selectedTask = null;
+        TagDAO tagDAO = new TagDAO(context);
+        Cursor cursor = db.query(getTableTask(), new String[] {getColumnId(), getColumnTitle(),
+                        getColumnDescription(), getColumnStatus(), getColumnTag()}, where,
+                null, null, null, null);
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+
+        if(cursor.getCount() > 0){
+            selectedTask = new Task();
+            selectedTask.setId( Integer.parseInt(cursor.getString(0)) );
+            selectedTask.setTitle( cursor.getString(1) );
+            selectedTask.setDescription( cursor.getString(2) );
+            selectedTask.setStatus( Integer.parseInt(cursor.getString(3)) );
+            Tag tag = tagDAO.searchTag( Integer.parseInt(cursor.getString(0)) );
+            selectedTask.setTag(tag);
+        }
+
+        return selectedTask;
+    }
+
+    public List<Task> listTasks(int status){
         List<Task> tasks = new ArrayList<Task>();
-        String query = "SELECT * FROM " + getTableTask();
+        String query = "SELECT * FROM " + getTableTask()
+                + " WHERE "+getColumnStatus()+" = '"+status+"'";
         SQLiteDatabase db = super.getWritableDatabase();
         TagDAO tagDAO = new TagDAO(this.context);
         Cursor cursor = db.rawQuery(query, null);

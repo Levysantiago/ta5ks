@@ -8,19 +8,19 @@
     android:paddingBottom="10dp"
     android:paddingTop="20dp">
 
-    <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/check"
+    <ImageView
+        android:id="@+id/img_change_status"
+        android:src="@drawable/ic_play"
+        app:layout_constraintEnd_toStartOf="@+id/ll_task"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
         android:layout_width="33dp"
         android:layout_height="30dp"
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="-3dp"
-        android:buttonTint="@color/colorWhite"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/ll_task"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"/>
 
     <LinearLayout
         android:id="@+id/ll_task"
@@ -29,7 +29,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@+id/tv_tag"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/check"
+        app:layout_constraintStart_toEndOf="@+id/img_change_status"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="0dp">
 

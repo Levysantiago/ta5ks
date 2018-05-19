@@ -1,44 +1,31 @@
 package com.uesc.tac.ta5ks;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by levy on 25/04/18.
- */
+public class BacklogActivity extends GenericActivity{
 
-public class BacklogActivity extends AppCompatActivity {
-
-    private ListView lv_tasks;
+    private static final int PICK_CONTACT_REQUEST = 1;
     private Button btn_newTask;
     private TextView tv_today;
     private TextView tv_backlog;
     private TextView tv_done;
-
-    private String[] titulo = {"Fazer atv de teoria", "Pegar comprovante de matrícula teste teste"};
-    private String[] descricao = {"Fazer atividade e entregar até segunda. É pra pesquisar sobre...",
-            "Pegar comprovante de matrícula com TPDB no colegiado."};
-    private int[] statusColors = {Color.CYAN, Color.BLUE};
-
-    private SimpleAdapter sAdapter;
+    private ImageView img_settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_backlog);
 
-        //Inicializing the objects
-        lv_tasks = findViewById(R.id.lv_tasks);
+        //Initializing the objects
         btn_newTask = findViewById(R.id.btn_newTask);
+        img_settings = findViewById(R.id.img_settings);
         tv_backlog = findViewById(R.id.tv_today);
         tv_today = findViewById(R.id.tv_backlog);
         tv_done = findViewById(R.id.tv_done);
@@ -47,14 +34,24 @@ public class BacklogActivity extends AppCompatActivity {
         tv_today.setText("today");
         tv_backlog.setText("backlog");
 
-        //Filling the list view
-        BacklogActivity.CustomAdapter customAdapter = new BacklogActivity.CustomAdapter();
-        lv_tasks.setAdapter(customAdapter);
+        //Initializing some objects
+        super.initializing();
+        //Setting the status
+        super.setSTATUS(1);
+        //Filling the list and updating it
+        super.fillTaskList();
+
+        super.lv_tasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("SELECTED ITEM", ""+i);
+            }
+        });
 
         tv_today.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BacklogActivity.this, MainActivity.class);
+                Intent intent = new Intent(BacklogActivity.this, TodayActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }
@@ -68,37 +65,34 @@ public class BacklogActivity extends AppCompatActivity {
                 overridePendingTransition(0,0);
             }
         });
+
+        btn_newTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BacklogActivity.this, TagActivity.class);
+                startActivityForResult(intent, PICK_CONTACT_REQUEST);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+            }
+        });
+
+        img_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BacklogActivity.this, SettingActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
-    class CustomAdapter extends BaseAdapter {
-        @Override
-        public int getCount() {
-            return statusColors.length;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            view = getLayoutInflater().inflate(R.layout.template_list_view, null);
-
-            View view_status= view.findViewById(R.id.view_status);
-            TextView line_a = view.findViewById(R.id.line_a);
-            TextView line_b = view.findViewById(R.id.line_b);
-
-            view_status.getBackground().setTint(statusColors[i]);
-            line_a.setText(titulo[i]);
-            line_b.setText(descricao[i]);
-
-            return view;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == PICK_CONTACT_REQUEST) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                fillTaskList();
+            }
         }
     }
 }
