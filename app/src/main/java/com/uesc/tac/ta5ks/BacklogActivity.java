@@ -17,7 +17,7 @@ public class BacklogActivity extends GenericActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_backlog);
+        setContentView(R.layout.activity_pages);
 
         //Initializing the objects
         tv_backlog = findViewById(R.id.tv_today);

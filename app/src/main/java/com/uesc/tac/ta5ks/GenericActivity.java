@@ -315,10 +315,12 @@ public class GenericActivity extends AppCompatActivity {
         if (requestCode == PICK_CONTACT_REQUEST) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                updateTaskList();
+                fillTaskList();
             }
         }
     }
+
+
 
     public static void setSTATUS(int STATUS) {
         GenericActivity.STATUS = STATUS;

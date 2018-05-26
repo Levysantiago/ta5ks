@@ -1,23 +1,10 @@
 package com.uesc.tac.ta5ks;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-
-import com.uesc.tac.ta5ks.dao.TaskDAO;
-import com.uesc.tac.ta5ks.model.Task;
-
-import java.util.List;
 
 /**
  * Created by levy on 25/04/18.
@@ -34,7 +21,7 @@ public class TodayActivity extends GenericActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_today);
+        setContentView(R.layout.activity_pages);
 
         //Inicializing the objects
         btn_newTask = findViewById(R.id.btn_newTask);

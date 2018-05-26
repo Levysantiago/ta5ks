@@ -17,7 +17,7 @@ public class DoneActivity extends GenericActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_done);
+        setContentView(R.layout.activity_pages);
 
         //Inicializing the objects
         btn_newTask = findViewById(R.id.btn_newTask);
