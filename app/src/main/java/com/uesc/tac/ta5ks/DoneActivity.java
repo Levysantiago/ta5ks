@@ -12,6 +12,7 @@ public class DoneActivity extends GenericActivity {
     private TextView tv_today;
     private TextView tv_backlog;
     private TextView tv_done;
+    private static final int STATUS = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +30,10 @@ public class DoneActivity extends GenericActivity {
         tv_today.setText("today");
         tv_backlog.setText("backlog");
 
+        //Setting the status
+        this.setSTATUS(STATUS);
         //Initializing some objects
         super.initializing();
-        //Setting the status
-        super.setSTATUS(3);
         //Filling the list and updating it
         super.fillTaskList();
 
@@ -54,5 +55,9 @@ public class DoneActivity extends GenericActivity {
             }
         });
 
+    }
+
+    public static int getSTATUS(){
+        return STATUS;
     }
 }

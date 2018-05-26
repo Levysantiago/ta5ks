@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TagActivity"
+        <activity android:name=".TaskActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.TAG"/>

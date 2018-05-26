@@ -26,7 +26,7 @@ public class TaskDAO extends Database{
     }
 
     public String addTask(Task task){
-        SQLiteDatabase db = super.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         long result;
 
         ContentValues values = new ContentValues();
@@ -43,6 +43,7 @@ public class TaskDAO extends Database{
         }else{
             return "Task registered";
         }
+
     }
 
     public void updateTask(Task task){
@@ -56,6 +57,7 @@ public class TaskDAO extends Database{
 
         db.update(getTableTask(), values, getColumnId() + " = ?",
                 new String[] {String.valueOf(task.getId()) });
+        db.close();
     }
 
     public Task searchTask(int id){
@@ -79,8 +81,17 @@ public class TaskDAO extends Database{
             Tag tag = tagDAO.searchTag( Integer.parseInt(cursor.getString(0)) );
             selectedTask.setTag(tag);
         }
+        db.close();
 
         return selectedTask;
+    }
+
+    public void removeTask(Task task){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(getTableTask(), getColumnId()+ " = ?", new String[] {String.valueOf(task.getId())});
+
+        db.close();
     }
 
     public List<Task> listTasks(int status){
@@ -105,6 +116,8 @@ public class TaskDAO extends Database{
                 tasks.add(task);
             }while(cursor.moveToNext());
         }
+
+        db.close();
 
         return tasks;
     }

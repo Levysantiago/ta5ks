@@ -7,7 +7,7 @@
     android:id="@+id/btn_newTask"
     android:layout_width="0dp"
     android:layout_height="145dp"
-    android:background="@color/colorTransparent"
+    android:background="@drawable/ripple_effect"
     android:text="ADD NEW TASK"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"

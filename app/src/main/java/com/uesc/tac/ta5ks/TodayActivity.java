@@ -29,6 +29,7 @@ public class TodayActivity extends GenericActivity {
     private TextView tv_today;
     private TextView tv_backlog;
     private TextView tv_done;
+    private static final int STATUS = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +42,12 @@ public class TodayActivity extends GenericActivity {
         tv_backlog = findViewById(R.id.tv_backlog);
         tv_done = findViewById(R.id.tv_done);
 
+        //Setting the status
+        this.setSTATUS(STATUS);
+        //Setting the next status when the img status is clicked
+        this.setNextStatus(DoneActivity.getSTATUS());
         //Initializing some objects
         super.initializing();
-        //Setting the status
-        super.setSTATUS(2);
         //Filling the list and updating it
         super.fillTaskList();
 
@@ -65,5 +68,9 @@ public class TodayActivity extends GenericActivity {
                 overridePendingTransition(0,0);
             }
         });
+    }
+
+    public static int getSTATUS(){
+        return STATUS;
     }
 }
