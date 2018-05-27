@@ -320,18 +320,21 @@ public class GenericActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 TaskDAO taskDAO = new TaskDAO(GenericActivity.this);
-                                String selected = "";
+                                String message = "";
+                                boolean chooseOption = false;
                                 int changedStatus;
 
                                 if(radio_button_1.isChecked()){
-                                    selected = radio_button_1.getText().toString();
+                                    message = radio_button_1.getText().toString();
+                                    chooseOption = true;
                                 }else if(radio_button_2.isChecked()){
-                                    selected = radio_button_2.getText().toString();
+                                    message = radio_button_2.getText().toString();
+                                    chooseOption = true;
                                 }else{
-                                    //Validating
+
                                 }
 
-                                switch (selected){
+                                switch (message){
                                     case "Today":{
                                         changedStatus = TodayActivity.getSTATUS();
                                         break;
@@ -350,12 +353,17 @@ public class GenericActivity extends AppCompatActivity {
                                     }
                                 }
 
-                                task.setStatus( changedStatus );
-                                taskDAO.updateTask(task);
-                                Toast.makeText(GenericActivity.this, "Task changed to "+selected+" status.",
-                                        Toast.LENGTH_SHORT).show();
+                                if(chooseOption){
+                                    task.setStatus( changedStatus );
+                                    taskDAO.updateTask(task);
+                                    Toast.makeText(GenericActivity.this, "Task changed to "+message+" status.",
+                                            Toast.LENGTH_SHORT).show();
 
-                                updateTaskList();
+                                    updateTaskList();
+                                }else{
+                                    Toast.makeText(GenericActivity.this, "Nothing's changed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
                             }
                         })
                 .setNegativeButton("Cancel",
