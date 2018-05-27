@@ -13,11 +13,11 @@
         android:layout_marginRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/tv_today"
+        app:layout_constraintRight_toLeftOf="@+id/tv_menu_1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_today"
+        android:id="@+id/tv_menu_1"
         style="@style/toolbar_selected_item_dark"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -26,23 +26,23 @@
         android:text="today"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/img_back"
-        app:layout_constraintRight_toLeftOf="@+id/tv_backlog"
+        app:layout_constraintRight_toLeftOf="@+id/tv_menu_2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_backlog"
+        android:id="@+id/tv_menu_2"
         style="@style/toolbar_item"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:gravity="center"
         android:text="backlog"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/tv_today"
-        app:layout_constraintRight_toLeftOf="@+id/tv_done"
+        app:layout_constraintLeft_toRightOf="@+id/tv_menu_1"
+        app:layout_constraintRight_toLeftOf="@+id/tv_menu_3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_done"
+        android:id="@+id/tv_menu_3"
         style="@style/toolbar_item"
         android:layout_width="wrap_content"
         android:gravity="center"
@@ -50,7 +50,7 @@
         android:layout_marginLeft="30dp"
         android:text="done"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/tv_backlog"
+        app:layout_constraintLeft_toRightOf="@+id/tv_menu_2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView

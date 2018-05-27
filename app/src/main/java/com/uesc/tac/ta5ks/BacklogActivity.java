@@ -20,18 +20,22 @@ public class BacklogActivity extends GenericActivity{
         setContentView(R.layout.activity_pages);
 
         //Initializing the objects
-        tv_backlog = findViewById(R.id.tv_today);
-        tv_today = findViewById(R.id.tv_backlog);
-        tv_done = findViewById(R.id.tv_done);
+        tv_backlog = findViewById(R.id.tv_menu_1);
+        tv_today = findViewById(R.id.tv_menu_2);
+        tv_done = findViewById(R.id.tv_menu_3);
 
-        //Changing menu items name
+        //Setting menu items names
         tv_today.setText("today");
         tv_backlog.setText("backlog");
+        tv_done.setText("done");
 
         //Setting the status
         this.setSTATUS(STATUS);
         //Setting the next status when the img status is clicked
         this.setNextStatus(TodayActivity.getSTATUS());
+        //Setting the next and previous page
+        this.setNextPage(TodayActivity.getSTATUS());
+        this.setPrevPage(DoneActivity.getSTATUS());
         //Initializing some objects
         super.initializing();
         //Filling the list and updating it

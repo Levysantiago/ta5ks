@@ -6,26 +6,26 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.uesc.tac.ta5ks.dao.TagDAO;
 import com.uesc.tac.ta5ks.dao.TaskDAO;
-import com.uesc.tac.ta5ks.model.Tag;
 import com.uesc.tac.ta5ks.model.Task;
+import com.uesc.tac.ta5ks.util.OnSwipeTouchListener;
 
 import java.util.List;
 
@@ -39,10 +39,13 @@ public class GenericActivity extends AppCompatActivity {
     private static final int PICK_CONTACT_REQUEST = 1;
     protected static int STATUS;
     protected static int NEXT_STATUS;
+    protected static int NEXT_PAGE;
+    protected static int PREV_PAGE;
     private ImageView img_settings;
     private Button btn_newTask;
     protected List<Task> tasks;
     protected ListView lv_tasks;
+    protected ConstraintLayout ctrl_tasks;
     private CustomAdapter customAdapter;
 
     @Override
@@ -51,9 +54,27 @@ public class GenericActivity extends AppCompatActivity {
     }
 
     protected void initializing(){
+        ctrl_tasks = findViewById(R.id.ctrl_tasks);
         lv_tasks = findViewById(R.id.lv_tasks);
         img_settings = findViewById(R.id.img_settings);
         btn_newTask = findViewById(R.id.btn_newTask);
+
+        OnSwipeTouchListener onSwipeTouchListener = new OnSwipeTouchListener(GenericActivity.this){
+            public void onSwipeLeft() {
+                Intent intent = new Intent(GenericActivity.this, getClassBySTATUS(NEXT_PAGE));
+                startActivityForResult(intent, 1);
+                overridePendingTransition(0,0);
+            }
+
+            public void onSwipeRight() {
+                Intent intent = new Intent(GenericActivity.this, getClassBySTATUS(PREV_PAGE));
+                startActivityForResult(intent, 1);
+                overridePendingTransition(0,0);
+            }
+        };
+
+        ctrl_tasks.setOnTouchListener(onSwipeTouchListener);
+        lv_tasks.setOnTouchListener(onSwipeTouchListener);
 
         img_settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +89,6 @@ public class GenericActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(GenericActivity.this, TaskActivity.class);
                 startActivityForResult(intent, 1);
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
             }
         });
 
@@ -135,7 +155,6 @@ public class GenericActivity extends AppCompatActivity {
                 }
                 case 3:{
                     img_change_status.setImageResource(R.drawable.ic_remove);
-                    message = "Tag removed";
                     break;
                 }
                 default:{
@@ -156,15 +175,13 @@ public class GenericActivity extends AppCompatActivity {
                     //If the status isn't Done
                     if(STATUS != 3){
                         task.setStatus(NEXT_STATUS);
+                        taskDAO.updateTask(task);
+                        updateTaskList();
+                        Toast.makeText(GenericActivity.this, finalMessage, Toast.LENGTH_SHORT).show();
                     }else{
-                        //Add a question before removing the task ---------------- THIS IS IMPORTANT
                         //Removing a task
-                        taskDAO.removeTask(task);
+                        callDeleteTaskDialog(task);
                     }
-
-                    taskDAO.updateTask(task);
-                    updateTaskList();
-                    Toast.makeText(GenericActivity.this, finalMessage, Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -213,7 +230,54 @@ public class GenericActivity extends AppCompatActivity {
         }
     }
 
-    public void callChangeStatusDialog(final Task task){
+    private void callDeleteTaskDialog(final Task task){
+        // Initialize a new instance of LayoutInflater service
+        LayoutInflater inflater = (LayoutInflater) GenericActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        // Inflate the custom layout/view
+        final View customView = inflater.inflate(R.layout.template_change_status,null);
+
+        final RadioGroup radioGroup = customView.findViewById(R.id.radio_group);
+        radioGroup.setVisibility(View.GONE);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GenericActivity.this);
+
+        // set prompts.xml to alert dialog builder
+        alertDialogBuilder.setView(customView);
+        //Setting the dialog title
+        alertDialogBuilder.setTitle("Do you want to delete this task?");
+
+        // set dialog message
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                TaskDAO taskDAO = new TaskDAO(GenericActivity.this);
+
+                                //Removing task
+                                taskDAO.removeTask(task);
+
+                                updateTaskList();
+                                Toast.makeText(GenericActivity.this, "Task removed", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                //Cancel button
+                                dialog.cancel();
+                            }
+                        });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
+
+    private void callChangeStatusDialog(final Task task){
         // Initialize a new instance of LayoutInflater service
         LayoutInflater inflater = (LayoutInflater) GenericActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -320,7 +384,22 @@ public class GenericActivity extends AppCompatActivity {
         }
     }
 
-
+    public Class getClassBySTATUS(int status){
+        switch (status){
+            case 1:{
+                return BacklogActivity.class;
+            }
+            case 2:{
+                return TodayActivity.class;
+            }
+            case 3:{
+                return DoneActivity.class;
+            }
+            default:{
+                return null;
+            }
+        }
+    }
 
     public static void setSTATUS(int STATUS) {
         GenericActivity.STATUS = STATUS;
@@ -328,5 +407,13 @@ public class GenericActivity extends AppCompatActivity {
 
     public static void setNextStatus(int nextStatus) {
         NEXT_STATUS = nextStatus;
+    }
+
+    public static void setNextPage(int nextPage) {
+        NEXT_PAGE = nextPage;
+    }
+
+    public static void setPrevPage(int prevPage) {
+        PREV_PAGE = prevPage;
     }
 }

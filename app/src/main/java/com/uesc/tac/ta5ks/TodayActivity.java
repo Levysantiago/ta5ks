@@ -25,14 +25,22 @@ public class TodayActivity extends GenericActivity {
 
         //Inicializing the objects
         btn_newTask = findViewById(R.id.btn_newTask);
-        tv_today = findViewById(R.id.tv_backlog);
-        tv_backlog = findViewById(R.id.tv_backlog);
-        tv_done = findViewById(R.id.tv_done);
+        tv_today = findViewById(R.id.tv_menu_1);
+        tv_done = findViewById(R.id.tv_menu_2);
+        tv_backlog = findViewById(R.id.tv_menu_3);
+
+        //Setting menu items names
+        tv_today.setText("today");
+        tv_backlog.setText("backlog");
+        tv_done.setText("done");
 
         //Setting the status
         this.setSTATUS(STATUS);
         //Setting the next status when the img status is clicked
         this.setNextStatus(DoneActivity.getSTATUS());
+        //Setting the next and previous page
+        this.setNextPage(DoneActivity.getSTATUS());
+        this.setPrevPage(BacklogActivity.getSTATUS());
         //Initializing some objects
         super.initializing();
         //Filling the list and updating it
