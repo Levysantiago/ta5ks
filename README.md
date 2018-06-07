@@ -1,6 +1,6 @@
 # ta5ks
 <p align="center">
-  <img src="https://imgur.com/sZEcTgZ" alt="ta5ks banner">
+  <img src="https://i.imgur.com/sZEcTgZ.png" alt="ta5ks banner">
 </p>
 
 This is an app that allows you to create and manage tasks. For each task you can associate with a
