@@ -1,4 +1,8 @@
 # ta5ks
+<p align="center">
+  <img src="https://imgur.com/sZEcTgZ" alt="ta5ks banner">
+</p>
+
 This is an app that allows you to create and manage tasks. For each task you can associate with a
 project (or tag). The project represents what the task is about, for example, the task "Study to
 the test tomorrow" can has the project "University" or "School". Each task has a title, a
