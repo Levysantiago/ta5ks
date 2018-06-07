@@ -10,13 +10,11 @@ done and what has been already done.
 Here are some instructions that show how to get a copy of the project up and running on your local
 machine for development and testing purposes.
 
-### Prerequisites
+### Components used
 
 Here are some components used in this app:
 * [ChipCloud](https://github.com/fiskurgit/ChipCloud)
 * [FlaxboxLayout](https://github.com/google/flexbox-layout)
-
-### Installing
 
 ## Authors
 
