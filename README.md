@@ -42,7 +42,7 @@ Studio page, then you'll follow the steps:
 
 ## Components used
 
-Here are some components used in this app:
+Here are some extra components used in this app:
 * [ChipCloud](https://github.com/fiskurgit/ChipCloud)
 * [FlaxboxLayout](https://github.com/google/flexbox-layout)
 
