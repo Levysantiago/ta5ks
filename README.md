@@ -44,7 +44,7 @@ Studio page, then you'll follow the steps:
 
 Here are some extra components used in this app:
 * [ChipCloud](https://github.com/fiskurgit/ChipCloud)
-* [FlaxboxLayout](https://github.com/google/flexbox-layout)
+* [FlexboxLayout](https://github.com/google/flexbox-layout)
 
 ## Authors
 
