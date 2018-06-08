@@ -27,7 +27,14 @@ Here are some functionalities implemented in the app.
 Here are some instructions that show how to get a copy of the project up and running on your local
 machine for development and testing purposes.
 
-### Components used
+The first thing you need to do is to close all your projects. This will open the initial Android
+Studio page, then you'll follow the steps:
+
+<p align="center">
+    <img src="https://i.imgur.com/4GeoWAQ.png" alt="ta5ks banner">
+</p>
+
+## Components used
 
 Here are some components used in this app:
 * [ChipCloud](https://github.com/fiskurgit/ChipCloud)
