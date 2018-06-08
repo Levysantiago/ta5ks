@@ -11,6 +11,11 @@ is about, for example, the task "Study to the test tomorrow" can has the project
 or "School". Each task has a title, a description and a tag. This app was built to help us to 
 controls what we need to do, what is being done and what has been already done.
 
+### Project Status
+
+The project status is "In Development", so the app isn't finished yet. We're developing other 
+functionalities like animations, solving some issues and improving the rest of the features.
+
 ### Functionalities
 
 Here are some functionalities implemented in the app.
