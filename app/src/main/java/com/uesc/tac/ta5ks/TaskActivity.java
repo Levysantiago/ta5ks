@@ -322,11 +322,18 @@ public class TaskActivity extends AppCompatActivity {
                                 // Inserting a new tag in database
                                 TagDAO tagDAO = new TagDAO(TaskActivity.this);
                                 String name = userInput.getText().toString();
-                                tagDAO.addTag(new Tag(name, color));
+                                Tag tag = tagDAO.searchTag(name);
+                                if(tag != null){
+                                    Toast.makeText(TaskActivity.this, "Tag \""+name+"\"" +
+                                            " already exists! ", Toast.LENGTH_LONG).show();
+                                }else{
+                                    tagDAO.addTag(new Tag(name, color));
+                                    Toast.makeText(TaskActivity.this, "Tag Registered! "
+                                            , Toast.LENGTH_LONG).show();
 
-                                Toast.makeText(TaskActivity.this, "Tag Registered! ", Toast.LENGTH_LONG).show();
+                                    updateFlexbox(flexbox);
+                                }
 
-                                updateFlexbox(flexbox);
                             }
                         })
                 .setNegativeButton("Cancel",
@@ -371,7 +378,6 @@ public class TaskActivity extends AppCompatActivity {
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
                 defaultColor = color;
-                //addNewProject(color, flexbox);
                 callProjectNameDialog(color);
             }
         });
