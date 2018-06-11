@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.uesc.tac.ta5ks.database.Database;
 import com.uesc.tac.ta5ks.model.Tag;
+import com.uesc.tac.ta5ks.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class TagDAO extends Database {
     public void removeTag(Tag tag){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.delete(getTableTag(), getColumnName() + "= ?", new String[] {tag.getName()});
+        db.delete(getTableTag(), getColumnId() + "= ?", new String[] {""+tag.getId()});
 
         db.close();
     }
@@ -83,6 +84,26 @@ public class TagDAO extends Database {
         }
 
         return selectedTag;
+    }
+
+    public boolean isTagUsed(Tag tag){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Selecting the tasks by the tag
+        String where = getColumnTag() + " = '" + tag.getId() + "'";
+        Cursor cursor = db.query(getTableTask(), new String[] {getColumnId(), getColumnTitle(),
+                        getColumnDescription(), getColumnStatus(), getColumnTag()}, where,
+                null, null, null, null);
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+
+        if(cursor.getCount() > 0){
+            return true;
+        }
+        db.close();
+
+        return false;
     }
 
     public List<Tag> listTags(){

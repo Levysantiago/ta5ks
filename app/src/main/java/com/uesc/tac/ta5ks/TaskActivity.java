@@ -203,12 +203,15 @@ public class TaskActivity extends AppCompatActivity {
                 }
                 case DragEvent.ACTION_DROP : {
                     TagDAO tagDAO = new TagDAO(TaskActivity.this);
-                    Tag tag = new Tag();
-                    tag.setName((String) chip.getText());
+                    Tag tag = tagDAO.searchTag((String) chip.getText());
+                    //Tag tag = new Tag();
+                    //tag.setName((String) chip.getText());
+
                     //Removing tag from DB
-                    tagDAO.removeTag(tag);
+                    callDeleteTagDialog(tag);
+                    //tagDAO.removeTag(tag);
+                    //Toast.makeText(TaskActivity.this, "Tag "+tag.getName()+" removed.", Toast.LENGTH_SHORT).show();
                     img_NewProject.setImageDrawable(ContextCompat.getDrawable(TaskActivity.this, R.drawable.add));
-                    Toast.makeText(TaskActivity.this, "Tag "+tag.getName()+" removed.", Toast.LENGTH_SHORT).show();
 
                     //Updating the width and height to old size
                     img_NewProject.getLayoutParams().width = (int) (50 * scale + 0.5f);
@@ -244,6 +247,55 @@ public class TaskActivity extends AppCompatActivity {
             }
         }
         return index;
+    }
+
+    public void callDeleteTagDialog(Tag tag){
+        TagDAO tagDAO = new TagDAO(this);
+
+        // Initialize a new instance of LayoutInflater service
+        LayoutInflater inflater = (LayoutInflater) TaskActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        // Inflate the custom layout/view (Using the project name template to doesn't need to create another one)
+        final View customView = inflater.inflate(R.layout.template_new_project,null);
+
+        //Updating the dialog to this aim
+        TextView tv_content = customView.findViewById(R.id.tv_content);
+        EditText editText = customView.findViewById(R.id.edt_projectName);
+
+        //Disabling the editText
+        editText.setEnabled(false);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(TaskActivity.this);
+
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setView(customView);
+
+        //Verifying if the tag is used by a task
+        boolean used = tagDAO.isTagUsed(tag);
+
+        if(used){
+            alertDialogBuilder.setTitle("Warning!");
+            tv_content.setText("This tag is been used by a task. It can't be deleted.");
+
+            // set dialog message
+            alertDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton("OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                }
+                            });
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
+        }else{
+            //Removing tag from DB
+            tagDAO.removeTag(tag);
+            Toast.makeText(TaskActivity.this, "Tag "+tag.getName()+" removed.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void callProjectNameDialog(final int color){
