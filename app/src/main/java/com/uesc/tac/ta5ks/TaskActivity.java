@@ -204,13 +204,9 @@ public class TaskActivity extends AppCompatActivity {
                 case DragEvent.ACTION_DROP : {
                     TagDAO tagDAO = new TagDAO(TaskActivity.this);
                     Tag tag = tagDAO.searchTag((String) chip.getText());
-                    //Tag tag = new Tag();
-                    //tag.setName((String) chip.getText());
 
                     //Removing tag from DB
                     callDeleteTagDialog(tag);
-                    //tagDAO.removeTag(tag);
-                    //Toast.makeText(TaskActivity.this, "Tag "+tag.getName()+" removed.", Toast.LENGTH_SHORT).show();
                     img_NewProject.setImageDrawable(ContextCompat.getDrawable(TaskActivity.this, R.drawable.add));
 
                     //Updating the width and height to old size
