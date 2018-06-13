@@ -84,6 +84,8 @@ public class TaskActivity extends AppCompatActivity {
         }else{
             btn_createTask.setText( "create task" );
         }
+        //The default status is 1 because the first registration is in backlog
+        final int STATUS = getIntent().getIntExtra("status", 1);
         edit_title.setText( getIntent().getStringExtra("title") );
         edit_description.setText( getIntent().getStringExtra("description") );
         final int task_id = getIntent().getIntExtra("task_id", -1);
@@ -120,9 +122,9 @@ public class TaskActivity extends AppCompatActivity {
                         final ToggleChip chip = (ToggleChip) layout.getChildAt(selectedProject);
 
                         Tag tag = tagDAO.searchTag(chip.getText().toString());
-                        //The status is 1 because the first registration is in backlog
+
                         Task task = new Task(edit_title.getText().toString(),
-                                edit_description.getText().toString(),1, tag);
+                                edit_description.getText().toString(), STATUS, tag);
 
 
                         //Inserting informations on database

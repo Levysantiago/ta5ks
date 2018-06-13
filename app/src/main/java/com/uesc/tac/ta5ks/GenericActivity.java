@@ -204,6 +204,7 @@ public class GenericActivity extends AppCompatActivity {
                     intent.putExtra("selectedTag", tv_tag.getText());
                     intent.putExtra("btn_createTask", "update task");
                     intent.putExtra("task_id", tasks.get(view.getId()).getId());
+                    intent.putExtra("status", STATUS);
 
                     startActivityForResult(intent, 1);
                     overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
