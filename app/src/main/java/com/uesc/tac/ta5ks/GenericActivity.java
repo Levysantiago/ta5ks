@@ -330,8 +330,6 @@ public class GenericActivity extends AppCompatActivity {
                                 }else if(radio_button_2.isChecked()){
                                     message = radio_button_2.getText().toString();
                                     chooseOption = true;
-                                }else{
-
                                 }
 
                                 switch (message){
